@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.elivelnascimento.testeandroidsantander.R;
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private EditText name;
     private EditText password;
     private Button enter;
+    private ProgressBar progressBar;
     private static final String PREFERENCE_FILE = "preference_file";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         name = findViewById(R.id.edit_login);
         password = findViewById(R.id.edit_password);
+        progressBar = findViewById(R.id.progress_bar);
 
         presenter = new LoginPresnter(this);
 
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void clickAcess() {
+        progressBar.setVisibility(View.GONE);
         this.enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,8 +89,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
-    public void acessHistoric(UserAccount userAccount) {
+    public void acessHistoric(UserAccount userAccount) {progressBar.setVisibility(View.VISIBLE);
         Intent intent = new Intent(LoginActivity.this, HistoricActivity.class);
         intent.putExtra("user", userAccount);
         startActivity(intent);
