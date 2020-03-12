@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-import model.StatementList;
+import models.model.StatementList;
 
 public class AdapterHistoric extends RecyclerView.Adapter<AdapterHistoric.MyViewHolder> {
 
