@@ -18,6 +18,15 @@ public class LoginPresenterTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    //Testes unitários de login e senha.
+
+    @Test
+    public void testPasswordFalse() {
+        LoginPresnter loginPresenter = new LoginPresnter(view);
+        boolean validate = loginPresenter.validadePassword("&@#123");
+        Assert.assertEquals(false,validate);
+
+    }
     @Test
     public void testPasswordTrue() {
         LoginPresnter loginPresenter = new LoginPresnter(view);
@@ -76,7 +85,7 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void testLoginEmail() {
+    public void testEmailCpfTrue() {
         LoginPresnter loginPresenter = new LoginPresnter(view);
         boolean validate = loginPresenter.validateEmailCPF("teste@teste.com");
         Assert.assertEquals(true,validate);
@@ -84,7 +93,14 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void testLoginEmailValitation(){
+    public void testEmailCpf(){
+        LoginPresnter loginPresnter = new LoginPresnter(view);
+        boolean validate = loginPresnter.validateEmailCPF("@");
+        Assert.assertEquals(false,validate);
+    }
+
+    @Test
+    public void testEmailCpfValitation(){
         LoginPresnter loginPresnter = new LoginPresnter(view);
         boolean validate = loginPresnter.validateEmailCPF("teste@");
         Assert.assertEquals(false,validate);
